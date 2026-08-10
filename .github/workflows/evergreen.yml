@@ -1,0 +1,56 @@
+name: Evergreen Thread
+
+# Target window 09:00-13:00 Europe/Zurich.
+# 08:00-11:00 UTC lands inside that window in both CET and CEST.
+# Times sit off the hour on purpose; the top of the hour is when GitHub is
+# busiest and runner acquisition is most likely to fail.
+#
+# All four slots can post. Each one checks the account for today's exact
+# text first and exits if it is already there, so a slot that fails to get
+# a runner costs nothing.
+
+on:
+  schedule:
+    - cron: '7 8 * * 1'    # SLOT 1
+    - cron: '53 8 * * 1'   # SLOT 2
+    - cron: '37 9 * * 1'   # SLOT 3
+    - cron: '23 10 * * 1'  # SLOT 4
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Preview only, do not post'
+        type: boolean
+        default: true
+
+# Queue overlapping runs rather than letting two post at once.
+concurrency:
+  group: evergreen
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Map cron to slot
+        id: slot
+        run: |
+          case "${{ github.event.schedule }}" in
+            "7 8 * * 1")   echo "n=1" >> $GITHUB_OUTPUT ;;
+            "53 8 * * 1")  echo "n=2" >> $GITHUB_OUTPUT ;;
+            "37 9 * * 1")  echo "n=3" >> $GITHUB_OUTPUT ;;
+            "23 10 * * 1") echo "n=4" >> $GITHUB_OUTPUT ;;
+            *)                echo "n=0" >> $GITHUB_OUTPUT ;;
+          esac
+
+      - name: Post
+        env:
+          THREADS_APP_ID: ${{ secrets.THREADS_APP_ID }}
+          THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          SLOT: ${{ steps.slot.outputs.n }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: python3 post_evergreen.py

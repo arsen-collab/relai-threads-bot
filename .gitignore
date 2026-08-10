@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+
+# Precaution: never let a locally-saved token or credential dump get committed.
+*.token
+.env
