@@ -127,6 +127,35 @@ def already_posted(creds, text, count=10):
     return any(t.strip() == normalised for t in texts)
 
 
+CONTAINER_POLL_ATTEMPTS = 10
+CONTAINER_POLL_SECONDS = 3
+
+
+def _wait_for_container(creds, creation_id):
+    """Poll until the container finishes processing on Meta's side.
+
+    Calling threads_publish immediately after creation is a known source
+    of a spurious "Media Not Found" 400 (error_subcode 4279009): the
+    container isn't done processing yet. Text-only containers usually
+    finish in a second or two, but there's no guarantee, so poll instead
+    of a fixed sleep.
+    """
+    for _ in range(CONTAINER_POLL_ATTEMPTS):
+        status = _request(
+            "GET", f"{API}/{creation_id}",
+            params={"fields": "status", "access_token": creds["THREADS_ACCESS_TOKEN"]},
+        )
+        if "_error" in status:
+            return  # Fall through and let the publish call surface the real error.
+        state = status.get("status")
+        if state == "FINISHED":
+            return
+        if state == "ERROR":
+            sys.exit(f"ERROR: container processing failed: {status}")
+        time.sleep(CONTAINER_POLL_SECONDS)
+    print("  Container still not FINISHED after polling, publishing anyway.")
+
+
 def post(creds, text):
     """Two-step publish: create a container, then publish it."""
     user_id = get_user_id(creds)
@@ -148,6 +177,8 @@ def post(creds, text):
     creation_id = container.get("id")
     if not creation_id:
         sys.exit(f"ERROR: no creation_id in container response: {container}")
+
+    _wait_for_container(creds, creation_id)
 
     published = _request(
         "POST", f"{API}/{user_id}/threads_publish",
