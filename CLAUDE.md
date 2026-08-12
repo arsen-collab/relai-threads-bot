@@ -28,28 +28,32 @@ auth model, different failure modes. Do not merge the two.
 
 | File | Workflow | Schedule | Content |
 |---|---|---|---|
-| `post_evergreen.py` | `evergreen.yml` | Every 2 days | One line fetched live from `relai-x-bot`'s `evergreen.txt` |
+| `post_evergreen.py` | `evergreen.yml` | Every 2 days | One line from `evergreen.txt`, a manual copy of the X bot's pool |
 
 Targets 09:00-13:00 Europe/Zurich, hard cutoff 20:00. Same `INTERVAL_DAYS`,
 `EPOCH` and `SHUFFLE_SEED` as `relai-x-bot`, so both accounts post the same
-line on the same day. These are kept in step by hand, there is no shared
-code between the repos for this, only shared conventions. Check
+line on the same day, provided `evergreen.txt` here still matches
+`relai-x-bot`'s copy exactly. These are kept in step by hand, there is no
+shared code between the repos for this, only shared conventions. Check
 `relai-x-bot/CLAUDE.md`'s Live bots table whenever touching this.
 
-### Pool source, and the drift it already had
+### Pool source is a manual copy, on purpose
 
-There is no local `evergreen.txt` in this repo. `post_evergreen.py` fetches
-the pool at runtime from
-`https://raw.githubusercontent.com/arsen-collab/relai-x-bot/main/evergreen.txt`.
+`evergreen.txt` here is a plain copy of `relai-x-bot/evergreen.txt`, checked
+into this repo. This repo is meant to run standalone, including once it goes
+private, so it does not reach across repos at runtime or at build time, not
+even to a public one.
 
-This repo originally shipped with a local copy, made once at build time. It
-had already drifted before going live: 43 lines here versus 232 in
-`relai-x-bot`, because the source pool grew after the copy was taken, and
-nothing re-synced it. Fetching live instead of copying makes that class of
-drift impossible, there is exactly one pool. The cost is a new runtime
-dependency: if `relai-x-bot` is ever renamed, made private, or the file
-moves off `main`, every slot fails closed (same as a missing local file
-would) until the URL is fixed.
+The tradeoff is real and has already bitten once: this file went stale (a
+43-line snapshot while `relai-x-bot`'s pool had grown to 232 lines) because
+nothing forced a re-sync after the source pool changed. There is no
+automated drift check here on purpose, that would reintroduce the
+cross-repo dependency this design avoids. The mitigation is process, not
+code: `relai-x-bot/CLAUDE.md`'s evergreen.txt rules say to update this copy
+whenever that file changes. When copying, replace the whole file verbatim
+and preserve line order, since `pick_tweet`'s shuffle is order-dependent; a
+copy that reorders or partially updates lines breaks the "same line, same
+day" guarantee even if every individual line is still correct.
 
 ### Shared module
 
@@ -97,10 +101,10 @@ with an auth error, this is the first thing to check.
 GitHub scheduled runs being unreliable applies here too**, since this repo
 uses the same GitHub Actions scheduling mechanism.
 
-**Pool fetch depends on `relai-x-bot` staying public at its current path.**
-If that repo is renamed, made private, or `evergreen.txt` moves off `main`,
-every slot here fails closed rather than posting stale or wrong content.
-Update `POOL_URL` in `post_evergreen.py` if the source repo ever moves.
+**`evergreen.txt` can silently drift from `relai-x-bot`'s copy.** Nothing
+in either repo checks the two files still match. This already happened
+once. Whoever edits `relai-x-bot/evergreen.txt` needs to remember to copy
+the change here too.
 
 ---
 
@@ -127,14 +131,15 @@ account, which requires it to be fair, clear and not misleading.
 
 **Rules for this repo:**
 
-- The pool is `relai-x-bot`'s `evergreen.txt`, fetched live, not a copy. It
-  went through Compliance review for @relai_app specifically. Verbatim reuse
-  on Threads is the current assumption; get a one-line confirmation from
-  Compliance that the sign-off covers cross-platform reuse before this goes
-  live, not just X.
-- Never add, edit or reword pool content. It isn't this repo's file to
-  change; edits belong in `relai-x-bot/evergreen.txt` and need the same
-  sign-off process as any other change there.
+- `evergreen.txt` is a copy of `relai-x-bot`'s pool, which went through
+  Compliance review for @relai_app specifically. Verbatim reuse on Threads
+  is the current assumption; get a one-line confirmation from Compliance
+  that the sign-off covers cross-platform reuse before this goes live, not
+  just X.
+- Never add, edit or reword content in `evergreen.txt` directly in this
+  repo without being asked. Treat `relai-x-bot/evergreen.txt` as the
+  original and this one as its copy; content changes belong there first,
+  then get copied here.
 - Flag regulatory exposure explicitly with the regulator and article. Flag
   it once, state the specific change needed, then move on.
 - Anything touching public copy is an advisory draft. Guglielmo in

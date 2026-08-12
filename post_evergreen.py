@@ -2,26 +2,28 @@
 """
 Relai Threads bot - evergreen posts.
 
-Posts one line every INTERVAL_DAYS days, targeting 09:00-13:00 Europe/Zurich.
-Mirrors the X evergreen bot (relai-x-bot/post_evergreen.py) line for line;
-only the API client, character limit, and pool source differ.
+Posts one line from evergreen.txt every INTERVAL_DAYS days, targeting
+09:00-13:00 Europe/Zurich. Mirrors the X evergreen bot
+(relai-x-bot/post_evergreen.py) line for line; only the API client and
+character limit differ.
 
 Pool source:
-  The pool lives in relai-x-bot's evergreen.txt, already through Compliance
-  review, and is fetched live from that repo's raw GitHub URL on every run
-  rather than kept as a local copy. A local copy drifts silently the moment
-  either repo's pool changes and nobody remembers to re-sync it (this
-  happened once already: this repo shipped with a 43-line snapshot while
-  relai-x-bot's pool had grown to 232 lines). Fetching live means there is
-  exactly one pool, ever. If the fetch fails, the run exits the same way a
-  missing local file would, and the next of the four daily slots retries.
+  evergreen.txt here is a manually-maintained copy of relai-x-bot's pool,
+  not a live fetch. This repo is meant to work standalone, including once
+  relai-x-bot goes private, so it does not reach across repos at runtime or
+  build time. The tradeoff is real: this file drifted once already (a
+  43-line snapshot went stale while relai-x-bot's pool grew to 232 lines)
+  and can drift again the same way. There is no automated guard against
+  that here on purpose. When relai-x-bot/evergreen.txt changes, copy the
+  whole file here too, in the same order, or the rotations fall out of
+  step with each other. relai-x-bot/CLAUDE.md's evergreen.txt rules say to
+  update this copy as well; keep that note in sync if this policy changes.
 
 Reliability design:
   Four runs fire on each posting day. Any of them can post. Before posting,
   a run checks the account's recent posts for this cycle's exact line and
-  exits if it is already there. So a run that fails to get a GitHub runner,
-  or fails to fetch the pool, costs nothing, because the next slot picks it
-  up.
+  exits if it is already there. So a run that fails to get a GitHub runner
+  costs nothing, because the next slot picks it up.
 
   This content is not time sensitive, so a late post beats a missed one.
   Anything up to 20:00 local goes out. Only past 20:00 is the day skipped,
@@ -29,7 +31,8 @@ Reliability design:
 
 Rotation:
   Same INTERVAL_DAYS, EPOCH and SHUFFLE_SEED as the X bot on purpose, so
-  both accounts post the same line on the same day. Keep these in step with
+  both accounts post the same line on the same day, as long as evergreen.txt
+  here matches relai-x-bot's copy exactly. Keep these in step with
   relai-x-bot/post_evergreen.py by hand; there is no shared code between the
   repos for this part, only shared conventions. If the two pools or cadences
   ever diverge on purpose, give this one its own SHUFFLE_SEED.
@@ -38,19 +41,13 @@ Rotation:
 import os
 import sys
 import random
-import urllib.error
-import urllib.request
 from datetime import date, datetime, timezone
 from zoneinfo import ZoneInfo
 
 import threads_api
 
 TZ = ZoneInfo("Europe/Zurich")
-
-# Single source of truth for the pool. Must stay pointed at relai-x-bot's
-# default branch. If that repo is ever renamed, made private, or the file
-# moves, this fetch fails and every slot exits until the URL is fixed.
-POOL_URL = "https://raw.githubusercontent.com/arsen-collab/relai-x-bot/main/evergreen.txt"
+POOL_FILE = "evergreen.txt"
 
 WINDOW_START_HOUR = 9
 WINDOW_TARGET_END_HOUR = 13
@@ -75,28 +72,26 @@ SLOT_UTC_TIMES = {1: (8, 7), 2: (8, 53), 3: (9, 37), 4: (10, 23)}
 SHUFFLE_SEED = "relai-evergreen-v1"
 
 
-def load_pool(url=POOL_URL):
-    try:
-        with urllib.request.urlopen(url, timeout=15) as resp:
-            raw_text = resp.read().decode("utf-8")
-    except (urllib.error.URLError, urllib.error.HTTPError) as exc:
-        sys.exit(f"ERROR: could not fetch pool from {url}: {exc}")
+def load_pool(path=POOL_FILE):
+    if not os.path.exists(path):
+        sys.exit(f"ERROR: {path} not found.")
 
     lines = []
-    for raw in raw_text.splitlines():
-        line = raw.strip()
-        # "# " or a bare "#" is a comment. "#word" is a hashtag.
-        if not line or line == "#" or line.startswith("# "):
-            continue
-        lines.append(line.replace("\\n", "\n"))
+    with open(path, encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.strip()
+            # "# " or a bare "#" is a comment. "#word" is a hashtag.
+            if not line or line == "#" or line.startswith("# "):
+                continue
+            lines.append(line.replace("\\n", "\n"))
 
     if not lines:
-        sys.exit(f"ERROR: {url} returned no tweets.")
+        sys.exit(f"ERROR: {path} contains no tweets.")
 
     seen = set()
     dupes = [t for t in lines if t in seen or seen.add(t)]
     if dupes:
-        sys.exit(f"ERROR: duplicate line in pool: {dupes[0][:60]}...")
+        sys.exit(f"ERROR: duplicate line in {path}: {dupes[0][:60]}...")
 
     long_ones = [t for t in lines if len(t) > MAX_CHARS]
     if long_ones:

@@ -1,0 +1,232 @@
+# Relai X evergreen pool. One tweet per line.
+# Blank lines and lines starting with "# " (hash + space) are ignored.
+# A bare "#" is also a comment. A line starting with #hashtag is a tweet.
+# Use \n for a line break inside a tweet.
+# Max 280 characters each. No duplicates. Minimum 4 lines.
+#
+# Add new lines at the bottom. Note: adding or removing lines reshuffles
+# the whole rotation order, so a line may reappear sooner than usual once.
+
+Bitcoin has been proclaimed dead 450+ times 🫡
+Sell a kidney if you must, but keep the Bitcoin
+If you are under 30 and have no Bitcoin, prepare to work until your grave
+If you have 0.2 Bitcoin, you already have more savings than most Europeans.\n\nKeep stacking.
+"I should have started DCA Bitcoin 5 years ago." - Everybody in 2031
+Euro supply: ♾️\n\nBitcoin supply: 21 million\n\nAct accordingly.
+Bitcoin has no pre-mine\nBitcoin has no insiders\nBitcoin has no initial investors\nBitcoin has no website\nBitcoin has no office\nBitcoin has no marketing budget\nBitcoin has no CEO\n\nYeah, I'd say Bitcoin is pretty fair.
+Is 5 Bitcoin enough to retire on?
+Protect your Bitcoin like it's worth 100x more.\n\nBecause one day it might.
+How many Bitcoin should a person in their 30s aim to have?
+Don't ask taxi drivers if Uber is a good idea.\n\nDon't ask hotels if AirBnB is a good idea.\n\nDon't ask bankers if Bitcoin is a good idea.
+"If Bitcoin is speculative, what do you call a $200k college loan with no guarantee of a job?"\n\n- @bitcoinarchive
+"Bitcoin will end all bank robberies, and all robberies by banks"\n\n- @Breedlove22
+If you own Bitcoin and 0 Bitcoin ETFs I want to follow you
+You don't invest in Bitcoin\n\nYou save in Bitcoin\n\nWay too few understand this
+Tell me you have Bitcoin without telling me you have Bitcoin
+Bitcoin ist für alle 🇩🇪\nBitcoin on kõigi jaoks 🇪🇪\nBitcoin este pentru toată lumea 🇷🇴\nBitcoin est pour tout le monde 🇫🇷\nBitcoin je pro každého 🇨🇿\nBitcoin es para todos 🇪🇸\nBitcoin é para todos 🇵🇹\nBitcoin è per tutti 🤌🇮🇹\nBitcoin is for everybody 🇬🇧\nBitcoin er for alle 🇩🇰
+Bitcoin is not crypto.\n\nAnd crypto is not Bitcoin.
+Future headline:\n\n"Bitcoin crashes from $900K to $700K. Now it's dead for sure" 🤡
+Dear no-coiners,\n\nIf a bitcoiner is trying to make you buy Bitcoin, they care about you.
+Bitcoin is about freedom, not about making you rich overnight
+Crypto is about enriching founders.\n\nBitcoin is about freedom.\n\nBitcoin and crypto are NOT the same.
+I just bought some Bitcoin because I love freedom
+We are not here to enrich crypto founders.\n\nWe're here for freedom money.\n\nBitcoin and "crypto" are not the same.
+How to win in life:\n\n1. Buy Bitcoin in self custody\n2. Wait
+Self-custody your Bitcoin.\n\nNot tomorrow.\n\nNow.
+If you don't self-custody your Bitcoin, you don't actually own any Bitcoin
+Buy Bitcoin:\n\nFrom your phone.\nSitting on the toilet.\nAt midnight.\nOver the weekend\nInto self-custody.\nInstantly.\n\nWelcome to Relai.
+Self-custody or death
+If a friend asks how many Bitcoin you own, how do you answer?
+The euro is a shitcoin
+If we ever tweet about altcoins, this account has been hacked and you need to report it
+1 bitcoin in self-custody is better than 2 bitcoin on an exchange\n\nI will die on this hill
+Either you have bitcoin in self custody or you have fake bitcoin\n\nSorry if this hurts your feelings
+Bitcoin has no borders\n\n               🇪🇭🇪🇷\n        🇰🇷🇦🇩🇦🇪🇦🇫🇦🇬🇵🇰\n              🇦🇮🇦🇱       🇦🇲🇦🇴\n            🇦🇶🇦🇷        🇦🇸🇨🇴\n           🇯🇲🇦🇼    🇦🇽🇦🇿\n      🇧🇫🇫🇮🇺🇸🇨🇭🇨🇱🇩🇪\n          🇷🇺🇹🇷       🇳🇱🇬🇧\n         🇨🇦🇧🇷         🇪🇬🇦🇹\n        🇿🇦🇾🇪      🇳🇬🇯🇵\n 🇭🇰🇮🇳🇪🇸🇨🇳🇳🇴🇸🇻\n     🇹🇭🇸🇾
+Stop asking us to list altcoins.\n\nWe won't.
+👏👏👏👏👏👏\n👏 WITHDRAW 👏\n👏YOUR👏\n👏BITCOIN👏\n👏FROM👏\n👏EXCHANGES👏\n👏👏👏👏👏👏\n\n(this is coming from an exchange)
+Academics on Bitcoin:\n\n"Yes, it works in practice but does it work in theory?"
+"If you want to change the world, don't protest. Write code!"\n\n- Hal Finney in 1994
+Protect your bitcoin like it's worth 100x more.\n\nBecause one day it might.
+If you have 0.3 Bitcoin, you already have more savings than most Europeans. 🇪🇺\n\nKeep stacking.
+Is 10 Bitcoin enough to retire on?
+Guys please stop asking us to list sh*tcoins.\n\nWe won't (for the 24982th time)
+You don't invest in Bitcoin\n\nYou save in Bitcoin.\n\nWay too few understand this.
+Before understanding Bitcoin, you have to understand money.\n\nVery few do.
+"Satoshi designed Bitcoin anonymously, with no funding from anyone, no ICO, no premine, & no research grant. That is how genius works."\n\n- @saifedean
+A random guy created a parallel financial system and then just disappeared.\n\nLet that sink in.
+We don't need mass adoption.\n\nWe need mass education.\n\nBitcoin
+N O T\n      Y O U R\n                K E Y S\n                           N O T\n                                   Y O U R\n                                             B I T C O I N
+Not owning Bitcoin is stupid.\n\nPass it on.
+The ultimate bitcoin goal:\n\n1 sat = 1 euro\n\nNow stop being a bear.
+If you bought 1 BTC in 2011, you would still have 1 BTC.\n\n1 BTC = 1 BTC
+Proof of stake = Trust in people\n\nProof of work = Trust in math
+Are you the only bitcoiner in your family?
+You don’t have enough bitcoin
+My family is asking me if it’s too late to buy Bitcoin.\n\nWhat would you say?
+Raise your hand if bitcoin has changed your life for the better 🤚
+Bitcoin.\n\nJust bitcoin.
+What's the first rule of bitcoin?
+You don't invest in Bitcoin\n\nYou save in Bitcoin.
+I'm a simple app.\n\nYou send me bad money, I send you good money.
+Buy Bitcoin\n\nThank me in 10 years.
+Whales are buying bitcoin\n\nSource: we sell it to them
+Thanks to Bitcoin, I could retire from my 9 to 5.\n\nNow I work 24/7.
+Losers are selling\n\nWinners are holding\n\nLegends are buying
+What is your Bitcoin stacking goal?\n\nBe honest.
+Buying bitcoin is like winning the lottery in slow motion
+Bitcoin has already won.\n\nThe world is simply catching up to this
+Bitcoin-only, guys.\n\nBitcoin-only.
+Fiat money is a crime against humanity
+Bitcoin educated more people on money and personal finance than any school.
+Don't send Bitcoin to strangers.\n\nSend strangers to Bitcoin.
+|￣￣￣￣￣￣￣￣￣￣￣￣￣|\n              You're not late\n              to bitcoin\n|＿＿＿＿＿＿＿＿＿＿＿＿＿|\n                    \ (👀) /\n                      \      /\n                       ——\n                       |     |\n                       |_   |_
+What time is it?\n\n             12\n      11     ^      1\n  10        |          2     It's time to get\n9           ⊙———>  your bitcoin off of\n   8                   4      the exchange o'clock\n       7          5\n             6
+N O T\n         Y O U R\n                     K E Y S\n                                 N O T\n                                          Y O U R\n                                                     B I T C O I N
+Euro = ♾\n\nBitcoin = 21M\n\nPick your fighter.
+Some people own zero Bitcoin but buy weekly lottery tickets...\n\nWe've got a lot of education to do.
+You don't adopt Bitcoin.\n\nBitcoin adopts you.
+Bitcoin price is fun but it's probably the least interesting part of bitcoin.\n\nAgree or disagree?
+My investment strategy: just buy Bitcoin and do nothing
+Tell me you have bitcoin without telling me you have bitcoin
+Bitcoin is backed by you.\n\nYes, you reading this tweet.
+2 bitcoin is better than 1 bitcoin.
+What is Bitcoin backed by?\n\nWrong answers only.
+Bitcoin isn't about getting rich quick.\n\nIt's about getting free quick.
+Everybody wants 1 bitcoin but nobody wants to stay patient and stack sats
+Nobody saves money anymore.\n\nUntil they meet Bitcoin
+"Bitcoin is risky" - say people holding currency that loses 6% of its value every year on purpose 💀
+Bitcoin is not a plan B.\n\nIt should be your plan A.
+|￣￣￣￣￣￣￣￣￣￣￣￣￣|\n              It's bitcoin,\n              not crypto\n|＿＿＿＿＿＿＿＿＿＿＿＿＿|\n                    \ (👀) /\n                      \      /\n                       ——\n                       |     |\n                       |_   |_
+Just buy bitcoin and hodl it.\n\nIt's relai that simple.
+Whales are stacking.\n\nSource: Relai Private
+Cryptography, not crypto
+There is no such thing as an ex-bitcoiner.\n\nTaking the orange pill is irreversible
+Fiat is the currency of the government.\n\nBitcoin is the currency of the people.
+Buy Bitcoin if you don’t want to be poor
+Fiat currencies are shitcoins
+Your grandchildren will study this era in history class:\n\n'The Great Bitcoin Rush of 2020-2030'
+Dear no-coiners,\n\nIf a bitcoiner is trying to make you buy bitcoin, they care about you.
+Don't ask taxi drivers if Uber is a good idea.\n\nDon't ask hotels if AirBnB is a good idea.\n\nSo why would you ask bankers if bitcoin is a good idea?
+Market update:\n\n1 BTC = 100,000,000 sats
+If you're sad, buy more Bitcoin.\n\nIf you're angry, buy more Bitcoin.\n\nIf you're hopeless, buy more Bitcoin.\n\nJust buy Bitcoin.
+GM Switzerland is the best country in the world 🇨🇭
+Proud to be a Bitcoin-only service
+EXCLUSIVE: Anonymous sources confirm Bitcoin still has only 21 million coins
+You can buy a fraction of a bitcoin\n\nPass the message.
+Bitcoin.
+Every Bitcoin skeptic eventually becomes a Bitcoin buyer\n\nThey just pay higher prices for the privilege of being wrong first
+It's not hard.\n\nFiat: sell\n\nBitcoin: buy
+1 BTC = 1 BTC\n\nThe best stablecoin.
+The fact that Bitcoin doesn't change IS the innovation.\n\nFew.
+5 rules of bitcoin\n\n- Hodl your own keys\n- Don't trust, verify\n- Slay your heroes\n- Stay humble\n- Stack sats\n\nWhat else?
+Get your bitcoin off exchanges and thank me later (this is coming from an exchange)
+We will never lose access to your wallet.\n\nBecause we never had access to your wallet.
+Imagine banking but open for 8 billion people.\n\nThat's called bitcoin
+Would you quit your job for 1 bitcoin?
+Your kid asks how much Bitcoin you have?\n\nWhat do you reply?
+They can print money faster than you can earn it.\n\nBitcoin fixes this
+You didn’t get lucky.\n\nYou studied thousands of hours and doubled down when others doubted you.
+At this point, it’s safe to say:\n\nBitcoin is here to stay
+Imagine a Swiss Bitcoin ATM, but accessible directly from your sofa.\n\nYup, that's me.
+Reminder:\n\nYou belong to the 0.2 % if you hodl 1 bitcoin
+Rule 1: Get your Bitcoin off exchanges.\n\nRule 2: Get your Bitcoin off exchanges.\n\nRule 3: Get your Bitcoin off exchanges.
+Everyone wants 1 BTC\n\nFew buy when it dips
+Protip: Don't ask bankers about bitcoin
+Imagine winning the lottery. How much would you put in bitcoin?
+Retweet if you have more bitcoin than 1 year ago.
+Imagine working for money that someone else can create for free
+There is no such thing as ex-bitcoiner
+Buy bitcoin.\n\nThat's it. That's the tweet.
+I AM A BITCOINER.
+Boomers got cheap houses.\n\nGen X got cheap tech stocks.\n\nWe get cheap Bitcoin.
+GM bitcoin is the future of money
+0.\n\nThat's how much user funds we hold.\n\nThank you for reading.
+NOT\n       YOUR\n                  KEYS\n                            NOT\n                                    YOUR\n                                               COINS
+Bitcoin fixes YOU.\n\nFew.
+"Only two things are genuinely scarce: time and bitcoin."\n\n- @saifedean
+Exit the matrix.\n\nBuy Bitcoin.
+Bitcoin is actually a stablecoin pegged to 100,000,000 sats.\n\nNobody talks about this.
+If you bought 1 Bitcoin 15 years ago, it would now be worth 1 Bitcoin
+Don't be stupid.\n\nDon't hold your Bitcoin on an exchange.
+Nocoiners: Bitcoin is unfair, we're forced to buy much higher than you early adopters.\n\nAlso nocoiners: LOL bitcoin crashed 75% again why would I buy this trash\n\nEvery. Single. Time.
+Bitcoin is backed by Bitcoin.\n\nFiatheads really struggle to understand this.
+More bitcoin education coming into the app 📚\n\nGoal: orangpill Europe 🇪🇺
+“You don’t need to learn how to trade Bitcoin. You need to learn how to not trade Bitcoin.”\n\n- @knutsvanholm
+I like bitcoin.
+It's a no-brainer that bitcoin will be the currency of the Internet.
+Retweet if you've read the Bitcoin Whitepaper.
+Saving in Bitcoin doesn’t make you rich overnight.\n\nIt makes sure you don’t get poorer over time.
+The more you learn about fiat, the more you want to sell it.\n\nThe more you learn about bitcoin, the more you want to buy it.
+How much Bitcoin is 'generational wealth'?
+"As the world is crashing, bitcoin keeps hashing."\n\n― Unknown
+Fix the money, fix the world.
+How much of your portfolio is in Bitcoin?\n\nBe honest
+Owning bitcoin is the best insurance policy you can have.
+Post your favorite bitcoin quote.\n\nI'll go first:\n\n"Running bitcoin" ― Hal Finney
+How often do you check the Bitcoin price?\n\nBe honest.
+You will own bitcoin and you will be happy
+Every company needs a bitcoin strategy
+You cannot ban bitcoin, you can only ban yourself from bitcoin.
+No, the feeling of not having enough bitcoin doesn't go away.
+Bitcoin is the new Wall Street but without the walls.
+We❤️bitcoin.
+What's better than a bitcoin?\n\n2 bitcoin.
+2010: It's too complex\n2014: It's too risky\n2024: It's too expensive\n2028: ???
+Your financial advisor: "diversify into 47 different asset classes"\n\nBitcoin: just buy and wait lol
+Are you the only bitcoiner in your family?\n\nIf yes, why?
+Saving in euros:⭐️\n\nSaving in Bitcoin:⭐️⭐️⭐️⭐️⭐️
+It's never a bad time to buy bitcoin
+It's relai simple.\n\nFiat: sell\n\nBitcoin: buy
+Basic Math:\n\n                         Your money\n  € EUR =      ——————\n                                  ♾\n\n                          Your money\n   BTC =        ——————\n                          21,000,000\n\nSpread the word.
+Just validated the whole supply of bitcoin.\n\nFelt good.
+At this point shutting down Bitcoin means shutting down the Internet.
+Name another financial asset with a hard cap like Bitcoin.\n\nI bet you can't
+You have a time machine. ⌛️\n\nWhich year would you travel to and why 2009?
+If your money regularly loses value, you need better money.\n\nBitcoin fixes this.
+Bitcoin adoption is happening right in front of our eyes\n\nAnd you're being part of it 💙
+Vergiss Krypto. Konzentrier dich auf Bitcoin.
+My favorite cryptos ranked:\n\n🥇Bitcoin\n🥈Bitcoin\n🥉Bitcoin\n\nWhat are yours?
+Bitcoin is a healthy obsession.
+You know better than buying a Bitcoin treasury company?\n\nBitcoin.
+There are 20,000 cryptos.\n\nOnly one truly matters.
+Bitcoin is better than gold.\n\nNo heavy bars to store.\n\nNo vault fees.\n\nNo purity scams.\n\nNo transport costs.\n\nBTC is clearly the easiest way to store wealth.
+If your time horizon is measured in decades, Bitcoin isn’t risky.\n\nWhat’s risky is not owning any.
+At what price would you be willing to sell some Bitcoin  ?
+I am a bitcoiner.
+SEND. ME. YOUR. DIRTY. FIAT.
+Normal people: When will you sell your bitcoin?\n\nBitcoiners: When will you sell your fiat money?
+Get your bitcoin off exchanges and thank me later
+Only about 25% of the world's population has access to banking.\n\nBitcoin will help the rest 75%
+Everyone wants bitcoin\n\nMost people just don't know it yet.
+No one controls Bitcoin\n\nEveryone controls their Bitcoin\n\nThis is why we'll win.
+NOT\nYOUR\nKEYS\nNOT\nYOUR\nBITCOIN
+I need more bitcoin
+Don't give your bitcoin to banks.
+Many people think they own bitcoin\n\nIn reality, they own paper bitcoin\n\nPaper bitcoin is not real bitcoin
+The first step in understanding bitcoin is understanding money.
+Fiat money is broken by design.\n\nVery few understand this.
+Bitcoin is your savings account.
+"If nuclear war destroyed half of our planet, Bitcoin would continue to live, uncorrupted."\n\n ― Ralph Merkle
+Eat well.\n\nSleep enough.\n\nStack sats.\n\nThat’s self-care.
+I'm shitposting until hyperbitcoinization
+Fiat needs banks.\nGold needs banks.\nCrypto needs banks.\n\nBitcoin does not need banks.
+Europeans need to stop being Europoors and start buying Bitcoin.
+There's an unlimited supply of fiat to buy a limited supply of bitcoin\n\nAct accordingly.
+Self-custody history lesson: Mt. Gox, QuadrigaCX, FTX, Celsius.\n\nClass dismissed.
+I f*cking love bitcoin
+My pronouns: stack/sats
+Owning bitcoin is what winning looks like.
+If your money regularly loses value, you need better money
+Eternally thankful to the Relai community.\n\nWe wouldn't be here without you. 💙
+Bitcoin is a game of accumulation.
+There are 62 million millionaires in the world.\n\nThere are only 21 million Bitcoin that will ever exist in the world.\n\nYou do the math.
+You can't attack Bitcoin just like you can't attack gravity.\n\nIt's happening whether you like it or not.
+Bitcoiners in 2030 will be the new "I bought Apple stock in 1997" crowd
+Banks hold IOUs.\nExchanges hold promises.\nHardware wallets hold Bitcoin.\n\nIt's not that complicated.
+Panic selling is not acceptable.\n\nUnless you're panic selling fiat...to us.
+Hello, my name is Relai and I'm addicted to selling people sats
+Who was the person who orangepilled you?
+Gib’s zu, du denkst gerade an Bitcoin, oder?
+I can't imagine a future without Bitcoin
+What's the difference between printing money and stealing?\n\nHint: none
+GMGMGMGM       GM              GM\nGM                          GMGM GMGM\nGM       GMGM      GM    GM    GM\nGM             GM      GM               GM\nGMGMGMGM      GM.              GM
