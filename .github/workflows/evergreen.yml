@@ -1,5 +1,10 @@
 name: Evergreen Thread
 
+# Fires every day; post_evergreen.py's own INTERVAL_DAYS check decides which
+# days actually post (currently every 2 days, matching relai-x-bot). Cron
+# can't express "every N days from a fixed epoch" directly, so the workflow
+# runs daily and the script does the real gating.
+#
 # Target window 09:00-13:00 Europe/Zurich.
 # 08:00-11:00 UTC lands inside that window in both CET and CEST.
 # Times sit off the hour on purpose; the top of the hour is when GitHub is
@@ -7,14 +12,15 @@ name: Evergreen Thread
 #
 # All four slots can post. Each one checks the account for today's exact
 # text first and exits if it is already there, so a slot that fails to get
-# a runner costs nothing.
+# a runner costs nothing. On a non-posting day, the script exits before any
+# API call, so it costs nothing either.
 
 on:
   schedule:
-    - cron: '7 8 * * 1'    # SLOT 1
-    - cron: '53 8 * * 1'   # SLOT 2
-    - cron: '37 9 * * 1'   # SLOT 3
-    - cron: '23 10 * * 1'  # SLOT 4
+    - cron: '7 8 * * *'    # SLOT 1
+    - cron: '53 8 * * *'   # SLOT 2
+    - cron: '37 9 * * *'   # SLOT 3
+    - cron: '23 10 * * *'  # SLOT 4
   workflow_dispatch:
     inputs:
       dry_run:
@@ -38,10 +44,10 @@ jobs:
         id: slot
         run: |
           case "${{ github.event.schedule }}" in
-            "7 8 * * 1")   echo "n=1" >> $GITHUB_OUTPUT ;;
-            "53 8 * * 1")  echo "n=2" >> $GITHUB_OUTPUT ;;
-            "37 9 * * 1")  echo "n=3" >> $GITHUB_OUTPUT ;;
-            "23 10 * * 1") echo "n=4" >> $GITHUB_OUTPUT ;;
+            "7 8 * * *")   echo "n=1" >> $GITHUB_OUTPUT ;;
+            "53 8 * * *")  echo "n=2" >> $GITHUB_OUTPUT ;;
+            "37 9 * * *")  echo "n=3" >> $GITHUB_OUTPUT ;;
+            "23 10 * * *") echo "n=4" >> $GITHUB_OUTPUT ;;
             *)                echo "n=0" >> $GITHUB_OUTPUT ;;
           esac
 

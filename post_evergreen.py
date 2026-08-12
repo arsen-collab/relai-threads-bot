@@ -2,43 +2,65 @@
 """
 Relai Threads bot - evergreen posts.
 
-Posts one line from evergreen.txt every Monday, targeting 09:00-13:00
-Europe/Zurich. Mirrors the X evergreen bot (relai-x-bot/post_evergreen.py)
-line for line; only the API client and character limit differ.
+Posts one line every INTERVAL_DAYS days, targeting 09:00-13:00 Europe/Zurich.
+Mirrors the X evergreen bot (relai-x-bot/post_evergreen.py) line for line;
+only the API client, character limit, and pool source differ.
+
+Pool source:
+  The pool lives in relai-x-bot's evergreen.txt, already through Compliance
+  review, and is fetched live from that repo's raw GitHub URL on every run
+  rather than kept as a local copy. A local copy drifts silently the moment
+  either repo's pool changes and nobody remembers to re-sync it (this
+  happened once already: this repo shipped with a 43-line snapshot while
+  relai-x-bot's pool had grown to 232 lines). Fetching live means there is
+  exactly one pool, ever. If the fetch fails, the run exits the same way a
+  missing local file would, and the next of the four daily slots retries.
 
 Reliability design:
-  Four runs fire each Monday. Any of them can post. Before posting, a run
-  checks the account's recent posts for this week's exact line and exits if
-  it is already there. So a run that fails to get a GitHub runner costs
-  nothing, because the next slot picks it up.
+  Four runs fire on each posting day. Any of them can post. Before posting,
+  a run checks the account's recent posts for this cycle's exact line and
+  exits if it is already there. So a run that fails to get a GitHub runner,
+  or fails to fetch the pool, costs nothing, because the next slot picks it
+  up.
 
   This content is not time sensitive, so a late post beats a missed one.
   Anything up to 20:00 local goes out. Only past 20:00 is the day skipped,
   to avoid posting overnight.
 
 Rotation:
-  Same EPOCH and SHUFFLE_SEED as the X bot on purpose, so both accounts
-  post the same line on the same Monday. If the two pools ever diverge,
-  give this one its own seed.
+  Same INTERVAL_DAYS, EPOCH and SHUFFLE_SEED as the X bot on purpose, so
+  both accounts post the same line on the same day. Keep these in step with
+  relai-x-bot/post_evergreen.py by hand; there is no shared code between the
+  repos for this part, only shared conventions. If the two pools or cadences
+  ever diverge on purpose, give this one its own SHUFFLE_SEED.
 """
 
 import os
 import sys
 import random
+import urllib.error
+import urllib.request
 from datetime import date, datetime, timezone
 from zoneinfo import ZoneInfo
 
 import threads_api
 
 TZ = ZoneInfo("Europe/Zurich")
-POOL_FILE = "evergreen.txt"
+
+# Single source of truth for the pool. Must stay pointed at relai-x-bot's
+# default branch. If that repo is ever renamed, made private, or the file
+# moves, this fetch fails and every slot exits until the URL is fixed.
+POOL_URL = "https://raw.githubusercontent.com/arsen-collab/relai-x-bot/main/evergreen.txt"
 
 WINDOW_START_HOUR = 9
 WINDOW_TARGET_END_HOUR = 13
 HARD_CUTOFF_HOUR = 20
 
-# Monday is 0.
-POSTING_WEEKDAYS = {0}
+# Post every INTERVAL_DAYS days, counted from EPOCH. Must match
+# relai-x-bot/post_evergreen.py so both accounts post the same line on the
+# same day. Do not change casually, it shifts every future posting day and
+# re-times the whole rotation.
+INTERVAL_DAYS = 2
 
 # Fixed reference point. Do not change once live, it anchors the rotation.
 EPOCH = date(2026, 1, 1)
@@ -53,26 +75,28 @@ SLOT_UTC_TIMES = {1: (8, 7), 2: (8, 53), 3: (9, 37), 4: (10, 23)}
 SHUFFLE_SEED = "relai-evergreen-v1"
 
 
-def load_pool(path=POOL_FILE):
-    if not os.path.exists(path):
-        sys.exit(f"ERROR: {path} not found.")
+def load_pool(url=POOL_URL):
+    try:
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            raw_text = resp.read().decode("utf-8")
+    except (urllib.error.URLError, urllib.error.HTTPError) as exc:
+        sys.exit(f"ERROR: could not fetch pool from {url}: {exc}")
 
     lines = []
-    with open(path, encoding="utf-8") as fh:
-        for raw in fh:
-            line = raw.strip()
-            # "# " or a bare "#" is a comment. "#word" is a hashtag.
-            if not line or line == "#" or line.startswith("# "):
-                continue
-            lines.append(line.replace("\\n", "\n"))
+    for raw in raw_text.splitlines():
+        line = raw.strip()
+        # "# " or a bare "#" is a comment. "#word" is a hashtag.
+        if not line or line == "#" or line.startswith("# "):
+            continue
+        lines.append(line.replace("\\n", "\n"))
 
     if not lines:
-        sys.exit(f"ERROR: {path} contains no tweets.")
+        sys.exit(f"ERROR: {url} returned no tweets.")
 
     seen = set()
     dupes = [t for t in lines if t in seen or seen.add(t)]
     if dupes:
-        sys.exit(f"ERROR: duplicate line in {path}: {dupes[0][:60]}...")
+        sys.exit(f"ERROR: duplicate line in pool: {dupes[0][:60]}...")
 
     long_ones = [t for t in lines if len(t) > MAX_CHARS]
     if long_ones:
@@ -84,6 +108,10 @@ def load_pool(path=POOL_FILE):
     return lines
 
 
+def is_posting_day(day):
+    return (day - EPOCH).days % INTERVAL_DAYS == 0
+
+
 def post_index(today):
     """How many posting days have elapsed since EPOCH, excluding today."""
     if today < EPOCH:
@@ -91,7 +119,7 @@ def post_index(today):
     count = 0
     cursor = EPOCH
     while cursor < today:
-        if cursor.weekday() in POSTING_WEEKDAYS:
+        if is_posting_day(cursor):
             count += 1
         cursor = date.fromordinal(cursor.toordinal() + 1)
     return count
@@ -120,7 +148,7 @@ def main():
 
     print(f"Now: {now:%Y-%m-%d %H:%M %Z} ({now:%A}) | slot {slot}")
 
-    if today.weekday() not in POSTING_WEEKDAYS and slot != 0:
+    if not is_posting_day(today) and slot != 0:
         print("Not a posting day. Exiting.")
         return
 
@@ -139,7 +167,7 @@ def main():
     tweet = pick_tweet(pool, today)
 
     print(f"Pool: {len(pool)} lines | index {post_index(today) % len(pool)}")
-    print(f"Repeat gap: {len(pool)} weeks")
+    print(f"Repeat gap: {len(pool) * INTERVAL_DAYS} days")
     print("---")
     print(tweet)
     print("---")
@@ -151,7 +179,7 @@ def main():
     creds = threads_api.get_credentials()
 
     if threads_api.already_posted(creds, tweet):
-        print("This week's post is already on the account. Nothing to do.")
+        print("This cycle's post is already on the account. Nothing to do.")
         return
 
     post_id = threads_api.post(creds, tweet)
